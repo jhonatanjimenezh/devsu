@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  # Servicio de RabbitMQ compartido
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - ws_network
+
+  # Base de datos para ws-customer
+  ws-customer-postgres:
+    image: postgres:15
+    container_name: ws-customer-postgres
+    environment:
+      POSTGRES_DB: customerdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ws-customer-postgres-data:/var/lib/postgresql/data
+      - ./database/customerdb.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - ws_network
+
+  # Base de datos para ws-account
+  ws-account-postgres:
+    image: postgres:15
+    container_name: ws-account-postgres
+    environment:
+      POSTGRES_DB: accountdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ws-account-postgres-data:/var/lib/postgresql/data
+      - ./database/accountdb.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - ws_network
+
+  # Servicio ws-customer
+  ws-customer:
+    build:
+      context: ./ws-customer
+    container_name: ws-customer
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: jdbc:postgresql://ws-customer-postgres:5432/customerdb
+      DATABASE_NAME: customerdb
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+    depends_on:
+      - ws-customer-postgres
+      - rabbitmq
+    networks:
+      - ws_network
+
+  # Servicio ws-account
+  ws-account:
+    build:
+      context: ./ws-account
+    container_name: ws-account
+    ports:
+      - "8081:8081"
+    environment:
+      DATABASE_URL: jdbc:postgresql://ws-account-postgres:5432/accountdb
+      DATABASE_NAME: accountdb
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+    depends_on:
+      - ws-account-postgres
+      - rabbitmq
+    networks:
+      - ws_network
+
+networks:
+  ws_network:
+    driver: bridge
+
+volumes:
+  ws-customer-postgres-data:
+  ws-account-postgres-data:
+

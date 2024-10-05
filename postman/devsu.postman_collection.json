@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "3106817c-f9e1-40e5-84f1-6bb31757e343",
+		"name": "devsu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25756408"
+	},
+	"item": [
+		{
+			"name": "clients",
+			"item": [
+				{
+					"name": "create customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Pedro Pablo\",\n  \"gender\": 1,\n  \"age\": 36,\n  \"identification\": \"0987654321\",\n  \"address\": \"Colombia\",\n  \"phoneNumber\": \"5555555555\",\n  \"clientId\": \"testrabbit\",\n  \"password\": \"securePassword123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ws-customer/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-customer",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update customer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"c18900bf-fd03-4e7b-8817-f806d4c5818f\",\n  \"name\": \"John Does\",\n  \"gender\": 1,\n  \"age\": 30,\n  \"identification\": \"123456789\",\n  \"address\": \"123 Main St\",\n  \"phoneNumber\": \"0987654321\",\n  \"clientId\": \"client987\",\n  \"password\": \"securePassword123\",\n  \"status\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ws-customer/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-customer",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get customer by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ws-customer/clientes/c875d3ba-9804-466a-bb0d-7c274fd29857",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-customer",
+								"clientes",
+								"c875d3ba-9804-466a-bb0d-7c274fd29857"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get customer all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ws-customer/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-customer",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "create account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountNumber\": \"1234567890\",\n    \"accountType\": 1,\n    \"initialBalance\": 500.00,\n    \"clientId\": \"123e4567-e89b-12d3-a456-426614174000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ws-account/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-account",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get account all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ws-account/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-account",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get account by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ws-account/cuentas/8c21cff3-9a7f-44fc-ad16-06b6395fe078",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-account",
+								"cuentas",
+								"8c21cff3-9a7f-44fc-ad16-06b6395fe078"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update account",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"8c21cff3-9a7f-44fc-ad16-06b6395fe078\",\n    \"accountNumber\": \"1234567890\",\n    \"accountType\": 2,\n    \"initialBalance\": 1000.00,\n    \"status\": true,\n    \"clientId\": \"123e4567-e89b-12d3-a456-426614174000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ws-account/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-account",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transaction",
+			"item": [
+				{
+					"name": "create transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountNumber\": \"1234567890\",\n    \"accountType\": 1,\n    \"initialBalance\": 500.00,\n    \"clientId\": \"123e4567-e89b-12d3-a456-426614174000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ws-account/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-account",
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get transactions all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ws-account/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-account",
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get transaction by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ws-account/movimientos/66dea1b9-2622-43dd-9471-983952e95518",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-account",
+								"movimientos",
+								"66dea1b9-2622-43dd-9471-983952e95518"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update transaction",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"66dea1b9-2622-43dd-9471-983952e95518\",\n    \"transactionType\": 1,\n    \"amount\": 150.00,\n    \"accountId\": \"8c21cff3-9a7f-44fc-ad16-06b6395fe078\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ws-account/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws-account",
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
